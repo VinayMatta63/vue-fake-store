@@ -1,12 +1,33 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/products">Products</router-link> |
+    <router-link to="/cart">Cart</router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
+<script>
+import { watchEffect } from "@vue/runtime-core";
+import { useStore } from "vuex";
+export default {
+  setup() {
+    const store = useStore();
+    watchEffect(() => {
+      const cart = localStorage.getItem("cart");
+      if (cart) {
+        store.dispatch("setCart", JSON.parse(cart));
+      }
+    });
+  },
+};
+</script>
+
 <style>
+.loader {
+  height: 400px;
+  width: 600px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
