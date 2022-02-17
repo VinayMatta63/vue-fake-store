@@ -56,6 +56,7 @@ export default {
   flex: 0.4;
   width: 100%;
   max-width: 300px;
+  max-height: 500px;
 }
 .product-page-details {
   display: flex;
